@@ -45,6 +45,18 @@ let saveUser = async (req, res) => {
   }
   return res.send('Save User');
 }
+let deleteUser = async (req, res) => {
+  let idUser = req.query.id;
+  if (idUser) {
+    let result = await CrudService.deleteUser(idUser);
+    if (result) {
+      return res.render('listUsers.ejs', { data: result });
+    }
+  } else {
+    return res.send("Can't found user");
+  }
+}
+
 /***
  * object {
  * key:value
@@ -56,5 +68,6 @@ module.exports = {
   addUser: addUser,
   getUsers: getUsers,
   getEditUser: getEditUser,
-  saveUser: saveUser
+  saveUser: saveUser,
+  deleteUser: deleteUser
 }

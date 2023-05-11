@@ -24,25 +24,25 @@
       </thead>
       <tbody>
         <% for (let i=0; i < data.length; i++) { %>
-          <tr>
-            <td>
-              <%= data[i].firstName %>
-            </td>
-            <td>
-              <%= data[i].lastName %>
-            </td>
-            <td>
-              <%= data[i].address %>
-            </td>
-            <td>
-              <%= data[i].gender=='1' ? 'Male' : 'Female' %>
-            </td>
-            <td>
-              <a href="/edit-user?id=<%= data[i].id %>" type="button" class="btn btn-outline-primary">Edit</a>
-              <a href="/delete-user?id=<%= data[i].id %>" type="button" class="btn btn-outline-danger">Delete</a>
-            </td>
-          </tr>
-          <% } %>
+        <tr>
+          <td>
+            <%= data[i].firstName %>
+          </td>
+          <td>
+            <%= data[i].lastName %>
+          </td>
+          <td>
+            <%= data[i].address %>
+          </td>
+          <td>
+            <%= data[i].gender=='1' ? 'Male' : 'Female' %>
+          </td>
+          <td>
+            <a href="/edit-user?id=<%= data[i].id %>" type="button" class="btn btn-outline-primary">Edit</a>
+            <a href="/delete-user?id=<%= data[i].id %>" type="button" class="btn btn-outline-danger">Delete</a>
+          </td>
+        </tr>
+        <% } %>
       </tbody>
     </table>
   </div>

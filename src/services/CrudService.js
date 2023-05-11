@@ -74,6 +74,32 @@ let saveUser = async (data) => {
     }
   })
 }
+let deleteUser = async (idUser) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let dataUser = await db.User.findOne({ where: { id: idUser }, raw: true });
+      if (dataUser) {
+        await db.User.destroy({
+          where: {
+            id: idUser //this will be your id that you want to delete
+          }
+        }).then(function (rowDeleted) { // rowDeleted will return number of rows deleted
+          if (rowDeleted === 1) {
+            console.log('Deleted successfully');
+          }
+        }, function (err) {
+          console.log(err);
+        });
+        let dataUsers = await db.User.findAll({ raw: true });
+        resolve(dataUsers);
+      } else {
+        resolve(null);
+      }
+    } catch (error) {
+      reject(error);
+    }
+  })
+}
 let hashPassword = (pass) => {
   return new Promise(async (resolve, reject) => {
     try {
@@ -84,4 +110,10 @@ let hashPassword = (pass) => {
     }
   })
 }
-module.exports = { createNewUser: createNewUser, getUsers: getUsers, getInfoUserById: getInfoUserById, saveUser: saveUser };
+module.exports = {
+  createNewUser: createNewUser,
+  getUsers: getUsers,
+  getInfoUserById: getInfoUserById,
+  saveUser: saveUser,
+  deleteUser: deleteUser
+};
