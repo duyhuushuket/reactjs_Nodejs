@@ -16,6 +16,16 @@ let loginUser = async (req, res) => {
     userData: user.userData ? user.userData : ''
   });
 }
+let listUsers = async (req, res) => {
+  let user = await userService.listUsers();
+  console.log(user);
+  return res.status(200).json({
+    resultCode: user.resultCode,
+    message: user.message,
+    data: user.userData ? user.userData : ''
+  });
+}
 module.exports = {
-  loginUser: loginUser
+  loginUser: loginUser,
+  listUsers: listUsers
 }

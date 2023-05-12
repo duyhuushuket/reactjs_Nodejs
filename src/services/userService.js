@@ -58,4 +58,24 @@ let checkUserEmail = (username) => {
     }
   })
 }
-module.exports = { doUserLogin: doUserLogin }
+let listUsers = () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let users = await db.User.findAll();
+      let dataResult = {};
+      if (users) {
+        dataResult.message = 'Get list users successful';
+        dataResult.resultCode = '0000';
+        dataResult.userData = users;
+        resolve(dataResult);
+      } else {
+        dataResult.message = 'Users not found';
+        dataResult.resultCode = 'U001';
+        resolve(dataResult);
+      }
+    } catch (error) {
+      reject(error);
+    }
+  })
+}
+module.exports = { doUserLogin: doUserLogin, listUsers: listUsers }
